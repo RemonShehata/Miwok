@@ -77,7 +77,7 @@ public class FamilyActivity extends AppCompatActivity {
                 // Release the media player if it currently exists because we are about to
                 // play a different sound file
                 releaseMediaPlayer();
-                
+
                 // Get the {@link Word} object at the given position the user clicked on
                 Word word = words.get(position);
 
@@ -94,6 +94,14 @@ public class FamilyActivity extends AppCompatActivity {
                 mediaPlayer.setOnCompletionListener(completionListener);
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // When the activity is stopped, release the media player resources because we won't
+        // be playing any more sounds.
+        releaseMediaPlayer();
     }
 
     /**
